@@ -54,10 +54,10 @@
  |2097152|20 00 00|81 00 00 00||
  |268435455|0F FF FF FF|FF FF FF 7F|Maximum value|
  
- Conversion folmula is as following:
+ Conversion formula is as following:
  ```
  Binary value 0000aaaa aaabbbbb bbcccccc cddddddd is:
               1aaaaaaa 1bbbbbbb 1ccccccc 0ddddddd
-			  (when 'aaaaaaa' is non-zero)
+              (when 'aaaaaaa' is non-zero)
  ```
  
