@@ -1,2 +1,5 @@
 # executive files are not included
 *.exe
+
+# exclude vscode configuration
+.vscode/
