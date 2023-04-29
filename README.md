@@ -39,8 +39,8 @@
 
 ### About Delta Time
  Delta time is time system that midi file uses
- |---------------|-----------|----------------|----|
  |Ticks (Decimal)|Ticks (Hex)|Delta Time (Hex)|Info|
+ |---------------|-----------|----------------|----|
  |0|00|00|Minimum value|
  |64|40|40||
  |127|7F|7F|1-byte limit|
