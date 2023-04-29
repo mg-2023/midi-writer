@@ -17,6 +17,7 @@
  Simply use functions in "midiwriter.h"
 
 ## Brief midi file structure
+ Midi file uses **Big-Endian** byte sequence
 
 ### Header Part
  ```
