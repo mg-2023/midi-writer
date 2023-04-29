@@ -203,7 +203,7 @@ int32_t WriteProgramChange(int32_t delay, int32_t chn, int32_t program, FILE *fo
  * nn is note number(00 to 7F), vv is velocity (00 to 7F)
  * if velocity is 0 this corresponds to note OFF message
  */
-int32_t WriteNote(int32_t chn, int32_t delay, int32_t noteNum, int32_t vel, FILE *fout) {
+int32_t WriteNote(int32_t delay, int32_t chn, int32_t noteNum, int32_t vel, FILE *fout) {
     AssertDeltaTime(delay);
     uint8_t deltaBytes[4];
     int32_t deltaBytesLen = ConvertToDeltaTime(deltaBytes, delay);
@@ -214,6 +214,31 @@ int32_t WriteNote(int32_t chn, int32_t delay, int32_t noteNum, int32_t vel, FILE
     }
     for(int i=0; i<3; i++) {
         fwrite(noteOnData+i, sizeof(uint8_t), 1, fout);
+    }
+    
+    return 3 + deltaBytesLen;
+}
+
+/* pitch bend message: Ec v1 v2
+ * where c is channel(0 to F, Ch1 to Ch16 respectively),
+ * either v1 or v2 is 00 to 7F
+ * 
+ * available bend value is 0 to 16383 (14bit full integer)
+ * bend value = v2*128 + v1
+ */
+int32_t WritePitchBend(int32_t delay, int32_t chn, int32_t value, FILE *fout) {
+    AssertDeltaTime(delay);
+    uint8_t deltaBytes[4];
+    int32_t deltaBytesLen = ConvertToDeltaTime(deltaBytes, delay);
+
+    uint8_t pitchBendData[] = {0xe0+chn, 0, 0};
+    pitchBendData[1] = value&0x7f;
+    pitchBendData[2] = (value&0x3f80) >> 7;
+    for(int i=0; i<deltaBytesLen; i++) {
+        fwrite(deltaBytes+i, sizeof(uint8_t), 1, fout);
+    }
+    for(int i=0; i<3; i++) {
+        fwrite(pitchBendData+i, sizeof(uint8_t), 1, fout);
     }
     
     return 3 + deltaBytesLen;
