@@ -22,7 +22,7 @@ int main(void) {
     }
     
     fscanf(in, "%d ", &ppqn);
-    if(ppqn > 0xffff) {
+    if(ppqn > 0x7fff) {
         fprintf(stderr, "Too much pulses per quarter note\n");
         exit(1);
     }
