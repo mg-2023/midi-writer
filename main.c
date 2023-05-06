@@ -69,7 +69,7 @@ int main(void) {
         
         else {
             trackSize += WriteNote(0, 0, noteNum, 100, out);
-            trackSize += WriteNote(0, noteLen, noteNum, 0, out);
+            trackSize += WriteNote(noteLen, 0, noteNum, 0, out);
             restLen = 0;
         }
     }
