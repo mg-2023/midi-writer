@@ -27,9 +27,9 @@ int main(void) {
     srand(time(NULL));
     for(int i=0; i<256; i++) {
         offset = rand()%25;
-        trackSize += WriteNote(9, 0, 35+offset, 100, out);
+        trackSize += WriteNote(0, 9, 35+offset, 100, out);
         
-        trackSize += WriteNote(9, PPQN/4, 35+offset, 0, out);
+        trackSize += WriteNote(PPQN/4, 9, 35+offset, 0, out);
         
         /*
         if(offset == 16) add = false;
